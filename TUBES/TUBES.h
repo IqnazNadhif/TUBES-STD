@@ -14,10 +14,10 @@ using namespace std;
 
 struct mahasiswa{
     int nilai;
-    string nama, nim, kelas;
+    string nama, nim, kelas, KodeDosen;
 };
 struct MataKuliah{
-    string namaMK, Dosen;
+    string namaMK, Dosen, KodeDOSEN;
 };
 
 typedef mahasiswa infotypeM;
@@ -44,17 +44,22 @@ struct ListMataKuliah{
     adrMK firstMK;
 };
 
-void createParent(infotypeM x);
-void createChild(infotypeMK x);
-void insertDataParent(ListMataKuliah &LMK, adrMK MK);
+adrMK createParent(infotypeMK xMK);
+adrM createChild(infotypeM xM);
+void CreateListParent(ListMataKuliah &LMK);
+void CreateListChild(ListMahasiswa &LM);
+void insertDataParent(ListMataKuliah &LMK, adrMK pMK);
 void showAllDataParent(ListMataKuliah LMK);
-void DeleteParentsAndChild(ListMataKuliah &LMK, adrMK &MK);
-adrMK findParent(ListMataKuliah &LMK, string namaMK);
-void addChild(ListMataKuliah &LMK,ListMahasiswa &LM, adrM M);
-void showAllData(ListMataKuliah LMK);
-adrM findChild(ListMataKuliah LMK, string namaMK, string nim);
-void deleteChild(ListMataKuliah LMK, string namaMK, ListMahasiswa &LM);
-void CountChild(ListMataKuliah LMK, string namaMK);
+void DeleteParentsAndChild(ListMataKuliah &LMK, string namaMK, adrMK &pMK);
+adrMK findParent(ListMataKuliah LMK, string namaMK);
 
+void addChild(ListMataKuliah &LMK, string namaMK, ListMahasiswa &LM, adrM M);
+void showAllData(ListMataKuliah LMK);
+
+adrM findChild(ListMataKuliah LMK, string namaMK, string nim);
+void deleteChild(ListMataKuliah &LMK, string namaMK, ListMahasiswa &LM, string nim, adrM &M);
+int CountChild(ListMataKuliah LMK, string namaMK);
+
+int Select_Menu();
 
 #endif // TUBES_H_INCLUDED

@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1672527380 source:c:\users\asus\onedrive\documents\iqnaz\codeblocks\tp1\tubes\tubes\main.cpp
+	<iostream>
+	"TUBES.h"
+
+1672524309 c:\users\asus\onedrive\documents\iqnaz\codeblocks\tp1\tubes\tubes\tubes.h
+	<iostream>
+
+1672527366 source:c:\users\asus\onedrive\documents\iqnaz\codeblocks\tp1\tubes\tubes\tubes.cpp
+	"TUBES.h"
+
