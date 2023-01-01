@@ -93,6 +93,11 @@ void DeleteParentsAndChild(ListMataKuliah &LMK, string namaMK, adrMK &pMK){
     }else if(qMK==firstMK(LMK)){
         firstMK(LMK) = nextMK(qMK);
         nextMK(qMK) = NULL;
+        pMK = firstMK(LMK);
+        while(nextMK(pMK)!=qMK){
+            pMK = nextMK(pMK);
+        }
+        nextMK(pMK) = firstMK(LMK);
     }else{
         //qMK = findParent(LMK, namaMK);
         pMK = firstMK(LMK);

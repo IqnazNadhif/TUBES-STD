@@ -17,7 +17,7 @@ int main()
 
     CreateListChild(LM);
     CreateListParent(LMK);
-    /*
+
     pilihan = Select_Menu();
     while (pilihan!=0){
         switch(pilihan){
@@ -102,91 +102,5 @@ int main()
         }
     }
     cout<<"ANDA TELAH KELUAR DARI PROGRAM"<<endl;
-*/
-
-
-
-    xMK.namaMK = "Struktur_Data";
-    xMK.Dosen = "Sofy";
-    xMK.KodeDOSEN = "SFY";
-    pMK = createParent(xMK);
-    insertDataParent(LMK, pMK);
-
-    xMK.namaMK = "Analisis_Kompleksitas_Algoritma";
-    xMK.Dosen = "Gia_Wulandari";
-    xMK.KodeDOSEN = "GIA";
-    pMK = createParent(xMK);
-    insertDataParent(LMK, pMK);
-
-    xMK.namaMK = "Interaksi_Manusia_Komputer";
-    xMK.Dosen = "Mira";
-    xMK.KodeDOSEN = "MIR";
-    pMK = createParent(xMK);
-    insertDataParent(LMK, pMK);
-
-    showAllDataParent(LMK);
-
-    //DeleteParentsAndChild(LMK, "Analisis_Kompleksitas_Algoritma", pMK);
-    //DeleteParentsAndChild(LMK, "Interaksi_Manusia_Komputer", pMK);
-    //DeleteParentsAndChild(LMK, "Struktur_Data", pMK); //Masih Error Braderr....
-    //showAllDataParent(LMK);
-
-    xM.nilai = 50;
-    xM.nama = "Iqnaz_Nadhif";
-    xM.nim = "1302210104";
-    xM.kelas = "SE.45.03";
-    xM.KodeDosen = "SFY";
-    pM = createChild(xM);
-    addChild(LMK, "Analisis_Kompleksitas_Algoritma", LM, pM);
-
-    xM.nilai = 85;
-    xM.nama = "Iqnaz Nadhif";
-    xM.nim = "1302210104";
-    xM.kelas = "SE.45.03";
-    xM.KodeDosen = "MIR";
-    pM = createChild(xM);
-    addChild(LMK, "Interaksi_Manusia_Komputer", LM, pM);
-
-    xM.nilai = 2000;
-    xM.nama = "kamal";
-    xM.nim = "1302210106";
-    xM.kelas = "SE.45.03";
-    xM.KodeDosen = "MIR";
-    pM = createChild(xM);
-    addChild(LMK, "Interaksi_Manusia_Komputer", LM, pM);
-
-    xM.nilai = 60;
-    xM.nama = "Iqnaz Nadhif";
-    xM.nim = "1302210104";
-    xM.kelas = "SE.45.03";
-    xM.KodeDosen = "GIA";
-    pM = createChild(xM);
-    addChild(LMK, "Analisis_Kompleksitas_Algoritma", LM, pM);
-
-    showAllData(LMK);
-
-    cout<<endl<<endl;
-
-    //DeleteParentsAndChild(LMK, "Analisis_Kompleksitas_Algoritma", pMK);
-    //showAllData(LMK);
-
-    //deleteChild(LMK, "Analisis_Kompleksitas_Algoritma", LM, "1302210104", pM);
-    //showAllData(LMK);
-
-    cout<<endl<<endl;
-
-    deleteChild(LMK, "Interaksi_Manusia_Komputer", LM, "1302210106", pM);
-    showAllData(LMK);
-
-    cout<<endl<<endl;
-
-    deleteChild(LMK, "Interaksi_Manusia_Komputer", LM, "1302210104", pM);
-    showAllData(LMK);
-
-
-    //cout<<CountChild(LMK, "Analisis_Kompleksitas_Algoritma");
-
-
-    //cout << "Hello world!" << endl;
     return 0;
 }

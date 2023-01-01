@@ -52,14 +52,11 @@ void insertDataParent(ListMataKuliah &LMK, adrMK pMK);
 void showAllDataParent(ListMataKuliah LMK);
 void DeleteParentsAndChild(ListMataKuliah &LMK, string namaMK, adrMK &pMK);
 adrMK findParent(ListMataKuliah LMK, string namaMK);
-
 void addChild(ListMataKuliah &LMK, string namaMK, ListMahasiswa &LM, adrM M);
 void showAllData(ListMataKuliah LMK);
-
 adrM findChild(ListMataKuliah LMK, string namaMK, string nim);
 void deleteChild(ListMataKuliah &LMK, string namaMK, ListMahasiswa &LM, string nim, adrM &M);
 int CountChild(ListMataKuliah LMK, string namaMK);
-
 int Select_Menu();
 
 #endif // TUBES_H_INCLUDED
