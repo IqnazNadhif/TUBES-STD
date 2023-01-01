@@ -1,0 +1,257 @@
+Procedure CreateListParent (in/out LMK : ListMataKuliah)
+Kamus
+Algorithm
+	firstMK(LMK) <- NULL
+endprocedure
+
+Procedure CreateListChild (in/out LM : ListMahasiswa)
+Kamus
+Algorithm
+	firstM(LM) <- NULL
+endprocedure
+	
+Function createParent (xMK : infotypeMK) -> adrMK
+Kamus
+	adrMK : pMK
+Algorithm
+	pMK <- new ElmMK
+	infoMK(pMK) <- xMK
+	nextMK(pMK) <- NULL
+	Mhs(pMK) <- NULL
+	
+	return pMK
+endfunction
+
+Function createChild (xM : infotypeM) -> adrM
+Kamus
+	adrM : pM
+Algorithm
+	pM <- new ElmMahasiswa
+	infoM(pM) <- xM
+	nextM(pM) <- NULL
+	
+	return pMK
+endprocedure
+	
+Procedure insertDataParent(ListMataKuliah &LMK, adrMK pMK)
+Kamus
+adrMK : qMK
+Algorithm
+	if(firstMK(LMK)=NULL)then
+		firstMK(LMK) <- pMK
+		nextMK(pMK) <- firstMK(LMK)
+	else then
+		qMK <- nextMK(firstMK(LMK))
+		while(nextMK(qMK) != firstMK(LMK))do
+			qMK <- nextMK(qMK)
+		endwhile
+			
+		nextMK(qMK) <- pMK;
+		nextMK(pMK) <- firstMK(LMK)
+	endif
+endfunction
+		
+Procedure showAllDataParent(in LMK : ListMataKuliah)
+Kamus
+adrMK : pMK
+Algorithm
+	pMK <- firstMK(LMK)
+	print(infoMK(pMK).namaMK, infoMK(pMK).Dosen, "(",infoMK(pMK).KodeDOSEN,")")
+	pMK <- nextMK(pMK)
+	while(pMK!=firstMK(LMK))do
+		print(infoMK(pMK).namaMK," ",infoMK(pMK).Dosen," (",infoMK(pMK).KodeDOSEN,")")
+		pMK <- nextMK(pMK)
+	endwhile
+endprocedure
+
+Function findParent(in LMK : ListMataKuliah, in namaMK : string) -> adr MK
+Kamus
+adrMK : pMK
+Algorithm
+    pMK <- firstMK(LMK)
+    while(pMK!=NULL)do
+        if(infoMK(pMK).namaMK = namaMK)then
+            return pMK
+            break
+		endif
+        pMK <- nextMK(pMK)
+	endwhile
+    if(pMK <- NULL)then
+        return pMK
+        print("Mata Kuliah Tidak Ditemukan")
+    endif
+endfunction
+
+Procedure DeleteParentAndChild(in/out LMK : ListMataKuliah, in namaMK : string, in/out pMK : adrMK)
+Kamus
+adrMK : qMK
+Algorithm
+	if(firstMK(LMK)=NULL)then
+		print("List Mata Kuliah Kosong")
+	else if(qMK==firstMK(LMK))then
+		firstMK(LMK) <- nextMK(qMK)
+		nextMK(qMK) <- NULL
+	else then
+		pMK <- firstMK(LMK)
+		while(nextMK(pMK)!=qMK)do
+			pMK <- nextMK(pMK)
+	endwhile
+		if(nextMK(qMK)=firstMK(LMK)){
+			nextMK(pMK) <- firstMK(LMK)
+			qMK = NULL
+		else then
+			nextMK(pMK) <- nextMK(qMK)
+			nextMK(qMK) <- NULL
+			qMK <- NULL
+		endif
+	endif
+endprocedure
+
+Procedure addChild( in/out LMK : ListMataKuliah, in namaMK : string, in/out LM : ListMahasiswa, in M : adrM)
+Kamus
+	Function findParent(in LMK : ListMataKuliah, in namaMK : string) -> adr MK
+	adrMK : pMK
+    adrM : pM, qM
+Algorithm
+	pMK <- findParent(LMK, namaMK)
+
+    if(Mhs(pMK)=NULL)then
+        Mhs(pMK) <- M
+        if(firstM(LM)=NULL)then
+            firstM(LM) <- M
+        else then
+            pM <- firstM(LM)
+            while(nextM(pM)!=NULL)do
+                pM <- nextM(pM)
+            endwhile
+            nextM(pM) <- M
+        endif
+    else then
+        qM <- Mhs(pMK)
+		nextM(M) <- nextM(qM)
+        nextM(qM) <- M
+	endif
+endprocedure
+
+Procedure showAllData(in LMK : ListMataKuliah)
+Kamus
+	adrMK : pMK
+    adrM : pM
+Algorithm
+    pMK <- firstMK(LMK)
+    print(infoMK(pMK).namaMK," ",infoMK(pMK).Dosen," (",infoMK(pMK).KodeDOSEN,")")
+    if(Mhs(pMK)!=NULL)then
+        pM = Mhs(pMK)
+        print("======Mahasiswa======")
+        while(pM!=NULL)do
+            if(infoM(pM).KodeDosen = infoMK(pMK).KodeDOSEN)then
+                print(infoM(pM).nilai," ",infoM(pM).nama," ",infoM(pM).nim," ",infoM(pM).kelas)
+            endif
+            pM = nextM(pM)
+        endwhile
+    endif
+    pMK <- nextMK(pMK)
+    while(pMK!=firstMK(LMK))do
+        print(infoMK(pMK).namaMK," ",infoMK(pMK).Dosen," ",infoMK(pMK).KodeDOSEN)
+        if(Mhs(pMK)!=NULL)then
+            pM <- Mhs(pMK)
+            print("======Mahasiswa======")
+            while(pM!=NULL)do
+                    if(infoM(pM).KodeDosen == infoMK(pMK).KodeDOSEN)then
+                        print(infoM(pM).nilai," ",infoM(pM).nama," ",infoM(pM).nim," ",infoM(pM).kelas)
+                    endif
+                pM = nextM(pM)
+            endwhile
+        endif
+        pMK = nextMK(pMK)
+    endif
+endprocedure
+
+Function findChild(in LMK : ListMataKuliah, in namaMK : string, in nim : string)
+Kamus
+	adrM M
+    adrMK pMK
+Algorithm
+	pMK <- findParent(LMK, namaMK)
+    M <- Mhs(pMK)
+    while(M!=NULL)do
+        if(infoM(M).nim = nim && infoMK(pMK).KodeDOSEN = infoM(M).KodeDosen)then
+            return M
+            break
+        endif
+        M = nextM(M)
+    endwhile
+    if(M=NULL){
+        return M
+    endif
+endfunction
+
+Procedure deleteChild( in/out LMK : ListMataKuliah, in namaMK : string, in/out LM : ListMahasiswa, in nim : string, in/out M : adrM)
+Kamus
+	adrMK : pMK
+    adrM : pM
+	Function findParent(in LMK : ListMataKuliah, in namaMK : string) -> adrMK
+	Function findChild(in LMK : ListMataKuliah, in namaMK : string, in nim : string)
+Algorithm
+	pM <- Mhs(pMK)
+    if(pM=M)then
+        if(nextM(M)=NULL)then
+            Mhs(pMK) <- NULL
+        else then
+            Mhs(pMK) <- nextM(Mhs(pMK))
+        endif
+    endif
+    else then
+        while(pM!=NULL)do
+            if(infoM(nextM(pM)).KodeDosen = infoM(M).KodeDosen)then
+                if(nextM(M)=NULL)then
+                    nextM(pM) <- NULL
+                    break
+                else then
+                    Mhs(pMK) <- pM
+                    break
+                endif
+            endif
+            pM = nextM(pM)
+        endwhile
+    endif
+endprocedure
+
+Function CountChild(in LMK : ListMataKuliah, in namaMK : string) -> integer
+Kamus
+	adrMK : pMK
+	adrM : pM
+	integer i <- 0
+	Function findParent(in LMK : ListMataKuliah, in namaMK : string) -> adrMK
+Algorithm
+	if(Mhs(pMK)!=NULL)then
+        pM <- Mhs(pMK)
+        while(pM!=NULL)do
+            if(infoM(pM).KodeDosen == infoMK(pMK).KodeDOSEN)then
+                i++
+            endif
+            pM = nextM(pM)
+        endwhile
+    endif
+    return i
+endprocedure
+
+Function Select_Menu() -> integer
+Kamus
+	integer pilihan
+Algorithm
+    print("=====MENU=====")
+    print("1. Menambah N Mata Kuliah")
+    print("2. Menambah N Mahasiswa dan Menghubungkan ke Mata Kuliah")
+    print("3. Menghapus Mata Kuliah dan Mahasiswa")
+    print("4. Menampilkan Semua Mata Kuliah")
+    print("5. Menampilkan Semua Mata Kuliah dan Mahasiswa")
+    print("6. Mencari Mata Kuliah N")
+    print("7. Mencari Mahasiswa N")
+    print("8. Menghitung Jumlah Mahasiswa yang Mengambil Mata Kuliah N")
+    print("9. Hapus Mahasiswa N pada Mata Kuliah M")
+    print("0. Exit")
+    print("Pilih Menu")
+    input(pilihan)
+    return pilihan
+endfunction

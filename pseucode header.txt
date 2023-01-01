@@ -1,0 +1,37 @@
+Type Mahasiswa < int nilai
+				string nama, nim, kelas, KodeDosen>
+Type Matakuliah < string namaMK, DOsen, KodeDOSEN>
+
+Type infotypeM Mahasiswa
+Type adrM : pointer to ElmMahasiswa
+Type infotypeMK Matakuliah
+Type adrMK : pointer to ElmMK
+
+Type ElmMahasiswa : < infoM : infotypeM
+				nextM : adrM >
+
+Type ElmMK : < infoMK : infotypeMK
+			 Mhs : adrM
+			 nextMK : adrMK >
+			 
+Type ListMahasiswa : < firstM : adrM >
+
+Type ListMataKuliah : < firstMK : adrMK >
+
+Function createParent (xMK : infotypeMK) -> adrMK
+Function createChild (xM : infotypeM) -> adrM
+Procedure CreateListParent (in/out LMK : ListMataKuliah)
+Procedure CreateListChild(in/out LM : ListMahasiswa)
+Procedure InsertDataParent(in/out LMK : ListMataKuliah, in pMK: adrMK)
+Procedure showAllDataParent(in LMK : ListMataKuliah)
+Procedure DeleteParentAndChild(in/out LMK : ListMataKuliah, in namaMK : string, in/out pMK : adrMK)
+Function findParent(in LMK : ListMataKuliah, in namaMK : string)
+
+Procedure addChild( in/out LMK : ListMataKuliah, in namaMK : string, in/out LM : ListMahasiswa, in M : adrM)
+Procedure showAllData(in LMK : ListMataKuliah)
+
+Function findChild(in LMK : ListMataKuliah, in namaMK : string, in nim : string)
+Procedure deleteChild( in/out LMK : ListMataKuliah, in namaMK : string, in/out LM : ListMahasiswa, in nim : string, in/out M : adrM)
+Function CountChild(in LMK : ListMataKuliah, in namaMK : string) -> integer
+
+Function Select_Menu() -> integer

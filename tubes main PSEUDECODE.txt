@@ -1,0 +1,100 @@
+program pendataan nilai Mahasiswa
+Kamus
+    ListMahasiswa LM
+    ListMataKuliah LMK
+    infotypeM xM
+    infotypeMK xMK
+    pMK : adrMK
+    pM : adrM 
+    integer pilihan, k, Jumdata
+    string namaMK, NIM
+    char subMenu
+Algoritma
+    CreateListChild(LM)
+    CreateListParent(LMK)
+    pilihan <- Select_Menu()
+    while (pilihan!=0)do
+        switch(pilihan)do
+        case 1:
+            print("Berapa Mata Kuliah yang akan Ditambahkan : ")
+            input(Jumdata)
+            for(k=1;k<=Jumdata;k++)do
+                print("Masukkan Nama Mata Kuliah : ")
+                input(xMK.namaMK)
+                print("Masukkan Dosen Mata Kuliah : ")
+                input(xMK.Dosen)
+				print("Masukkan Kode Dosen Mata Kuliah : ")
+                input(xMK.KodeDOSEN)
+                pMK <- createParent(xMK)
+                insertDataParent(LMK, pMK)
+            end for
+            break;
+        case 2:
+            print("Berapa Mahasiswa yang akan Ditambahkan : ")
+            input(Jumdata)
+            for(k=1;k<=Jumdata;k++)do
+                print("Masukkan Nama Mahasiswa : ")
+                input(xM.nama)
+                print("Masukkan NIM Mahasiswa : ")
+                input(xM.nim)
+                print("Masukkan Kelas Mahasiswa : ")
+                input(xM.kelas)
+                print("Masukkan Kode Dosen Mata Kuliah yang diambil Mahasiswa : ")
+                input(xM.KodeDosen)
+                print("Masukkan Nilai Mahasiswa : ")
+                print(xM.nilai)
+                pM <- createChild(xM)
+                print("Mata Kuliah yang Diambil : ")
+                input(namaMK)
+                addChild(LMK, namaMK, LM, pM)
+            }
+            break
+        case 3:
+            print("Masukkan Nama Mata Kuliah yang ingin dihapus : ")
+            input(namaMK)
+            DeleteParentsAndChild(LMK, namaMK, pMK)
+            break
+        case 4:
+            showAllDataParent(LMK)
+            break
+        case 5:
+            showAllData(LMK)
+            break
+        case 6:
+            print("Masukkan Nama Mata Kuliah : ")
+            input(namaMK)
+            pMK <- findParent(LMK, namaMK)
+            print(infoMK(pMK).namaMK, infoMK(pMK).Dosen, " ("<<infoMK(pMK).KodeDOSEN<<")")
+            break
+        case 7:
+            print("Masukkan NIM Mahasiswa : ")
+            input(NIM)
+            print("Masukkan Nama Mata Kuliah Mahasiswa : ")
+            input(namaMK)
+            pM <- findChild(LMK, namaMK, NIM)
+            print("infoM(pM).nilai, infoM(pM).nama, infoM(pM).nim, infoM(pM).kelas")
+            break
+        case 8:
+            print("Masukkan Nama Mata Kuliah : ")
+            input(namaMK)
+            print("Jumlah mahasiswa : ",CountChild(LMK, namaMK))
+            break
+        case 9:
+            print("Masukkan NIM Mahasiswa : ")
+            input(NIM)
+			print("Masukkan Nama Mata Kuliah : ")
+            input(namaMK)
+            deleteChild(LMK, namaMK, LM, NIM, pM);
+            break
+        }
+        print("Kembali ke menu utama?(Y/N)")
+        input(subMenu)
+        if(subMenu='Y')then
+            pilihan <- Select_Menu()
+        else then
+            pilihan <- 0;
+        endif
+    endif
+endprogram
+    cout<<"ANDA TELAH KELUAR DARI PROGRAM"<<endl;
+*/
